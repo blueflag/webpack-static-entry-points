@@ -13,7 +13,9 @@
   "main": "index.js",
   "scripts": {
     "test": "grunt test",
-    "link": "cd src/trc-quiz-maker/ && npm link && cd ../../ && npm link trc-quiz-maker",
+    "link": "npm run link-quiz && npm run link-static",
+    "link-quiz": "cd src/trc-quiz-maker/ && npm link && cd ../../ && npm link trc-quiz-maker",
+    "link-static": "cd src/webpack-static-entry-points/ && npm link && cd ../../ && npm link webpack-static-entry-points",
     "start": "node index"
   },
   "author": [],

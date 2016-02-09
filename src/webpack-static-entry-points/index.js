@@ -1,29 +1,27 @@
 import {Map, List, fromJS} from 'immutable';
-var StaticSiteGeneratorPlugin = require('static-site-generator-webpack-plugin');
-var create = require('lodash/object/create');
-var fs = require("fs");
-var path = require("path");
-var glob = require("glob");
-var yamlFront = require('yaml-front-matter');
-
-var fileGlob = glob.sync('./static/*.md');
+import StaticSiteGeneratorPlugin from 'static-site-generator-webpack-plugin';
+import create from 'lodash/object/create';
+import fs from "fs";
+import path from "path";
+import glob from "glob";
+import yamlFront from 'yaml-front-matter';
 
 
-var fileList = List(fileGlob).map(filePath => {
-    var fileRegex = filePath.match(/([^\/]+)(\.\w+$)/);
-    var file = fs.readFileSync(path.resolve(filePath), 'utf8');
-    return fromJS(yamlFront.loadFront(file))
-        .set('filePath', filePath)
-        .set('fileName', fileRegex[1])
-        .set('fileExtension', fileRegex[2]);
-});
+module.exports = function(config, globPattern, renderPath) {
+    var fileGlob = glob.sync(globPattern);
+    var fileList = List(fileGlob).map(filePath => {
+        var fileRegex = filePath.match(/([^\/]+)(\.\w+$)/);
+        var file = fs.readFileSync(path.resolve(filePath), 'utf8');
+        return fromJS(yamlFront.loadFront(file))
+            .set('filePath', filePath)
+            .set('fileName', fileRegex[1])
+            .set('fileExtension', fileRegex[2]);
+    });
 
-var entryObject = fileList.reduce((reduction, value) => {
-    return reduction.set(value.get('fileName'), './src/trc-quiz-maker/static/staticRender.js')
-}, Map());
+    var entryObject = fileList.reduce((reduction, value) => {
+        return reduction.set(value.get('fileName'), renderPath)
+    }, Map());
 
-
-module.exports = function(config) {
     return create(config, {
         devtool: undefined,
         entry: entryObject.toJS(),

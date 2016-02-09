@@ -1,4 +1,5 @@
 require('es6-promise').polyfill();
+import webpackStaticEntryPoints from 'webpack-static-entry-points';
 var webpack = require('webpack');
 var path = require('path');
 var create = require('lodash/object/create');
@@ -136,5 +137,5 @@ var production = create(development, {
 module.exports = {
     development: development,
     production: production,
-    static: require('./webpack.static.config')(development)
+    static: webpackStaticEntryPoints(development, './static/*.md', './src/trc-quiz-maker/static/staticRender.js')
 };

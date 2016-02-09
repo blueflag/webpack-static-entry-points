@@ -1,0 +1,15 @@
+{
+  "name": "webpack-static-entry-points",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "dependencies": {
+    "static-site-generator-webpack-plugin": "^2.0.1"
+  },
+  "author": "Allan Hortle",
+  "license": "ISC"
+}
