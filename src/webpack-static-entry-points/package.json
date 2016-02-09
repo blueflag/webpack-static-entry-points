@@ -8,7 +8,8 @@
   },
   "keywords": [],
   "dependencies": {
-    "static-site-generator-webpack-plugin": "^2.0.1"
+    "static-site-generator-webpack-plugin": "^2.0.1",
+    "immutable": "^3.7.6"
   },
   "author": "Allan Hortle",
   "license": "ISC"

@@ -1,13 +1,13 @@
 import React from 'react';
-var md = require( "markdown" ).markdown
-
+import parseQuiz from 'trc-quiz-maker/client/quiz/parseQuiz';
 
 export default function Quiz(props) {
+
     // var questions = props.__content
     //     .split("#")
     //     .filter(ii => ii !== '\n')
     //     .map(ii => ii.replace(/./,'#'))
 
-    console.log(md.parse(props.__content));
+    console.log(parseQuiz(props.__content));
     return <div>Quiz</div>
 }

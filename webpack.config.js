@@ -137,5 +137,5 @@ var production = create(development, {
 module.exports = {
     development: development,
     production: production,
-    static: webpackStaticEntryPoints(development, './static/*.md', './src/trc-quiz-maker/static/staticRender.js')
+    static: webpackStaticEntryPoints(development, './content/*', './src/trc-quiz-maker/static/staticRender.js')
 };
